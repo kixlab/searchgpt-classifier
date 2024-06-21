@@ -1,24 +1,19 @@
 # -*- coding: utf-8 -*-
 import csv
 from openai import OpenAI
-import dotenv
-import os
+import dotenv, os
 
 # Load environment variables from a .env file
 dotenv.load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-# Your OpenAI API key
+
+# Initialize OpenAI client with API key
 client = OpenAI(api_key=OPENAI_API_KEY)
 
-# Path to your input CSV file
+# Path to your input and output CSV files
 input_csv_path = "Manualcodingoutput.csv"
-
 model_string = "gpt-4-0125-preview"
-
-# Extracting the last part of the model name to use in the output CSV file name
 model_name_suffix = "gpt4"
-
-# Path to your output CSV file using the model name suffix
 output_csv_path = f"model_responses_{model_name_suffix}.csv"
 
 
@@ -88,6 +83,7 @@ def write_responses_to_csv(file_path, prompts_responses):
 
 # Main modification is in the response processing to include '0226 axis1' comparison
 def generate_responses(prompts, system_prompt):
+    # Use fewshot examples if accuracy Rate is low
     examples = [
         {
             "role": "user",

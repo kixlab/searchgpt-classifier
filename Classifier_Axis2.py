@@ -10,15 +10,9 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 
-# Path to your input CSV file
 input_csv_path = "Manualcodingoutput.csv"
-
 model_string = "gpt-4-0125-preview"
-
-# Extracting the last part of the model name to use in the output CSV file name
 model_name_suffix = "gpt4"
-
-# Path to your output CSV file using the model name suffix
 output_csv_path = f"AXIS_2model_responses_{model_name_suffix}.csv"
 
 
